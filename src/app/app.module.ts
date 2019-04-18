@@ -15,10 +15,12 @@ import { MatToolbarModule,
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,7 @@ import { AppComponent } from './app.component';
     MatButtonModule,
     MatTableModule,
     MatDividerModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
