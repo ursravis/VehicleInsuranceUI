@@ -1,0 +1,85 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>All Your Movers</mat-card-title>
+    <mat-card-subtitle>Vehicle Info</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign.xs="center center" fxLayoutWrap>
+      <div fxFlex="50" fxFlexOrder.lt-md="1">
+        <mat-card class="vehicle-card">
+            <mat-card-header>
+                <mat-card-title>New Vehicle</mat-card-title>
+              </mat-card-header>
+          <mat-card-content>
+            <div class="example-container">
+              <mat-form-field>
+                <input matInput placeholder="Vehicle Number">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Model">
+              </mat-form-field>
+
+              <mat-form-field>
+                <input type="number" matInput placeholder="Year">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Vehicle Type">
+                  <mat-option value="option">SUV</mat-option>
+                  <mat-option value="option">Sedan</mat-option>
+                  <mat-option value="option">Truck</mat-option>
+                  <mat-option value="option">EV</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="end">
+              <button mat-raised-button >Add Vehicle</button>
+            </mat-card-actions>
+        </mat-card>
+      </div>
+      <div fxFlex="50"  fxFlexOrder.lt-md="2">
+     
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                  <!--- Note that these columns can be defined in any order.
+                        The actual rendered columns are set as a property on the row definition" -->
+                
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="VehicleNumber">
+                    <th mat-header-cell *matHeaderCellDef> Vehicle Number </th>
+                    <td mat-cell *matCellDef="let element"> {{element.VehicleNumber}} </td>
+                  </ng-container>
+                
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="Model">
+                    <th mat-header-cell *matHeaderCellDef> Model </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Model}} </td>
+                  </ng-container>
+                
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="Year">
+                    <th mat-header-cell *matHeaderCellDef> Year </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Year}} </td>
+                  </ng-container>
+                
+                  <!-- Symbol Column -->
+                  <ng-container matColumnDef="Type">
+                    <th mat-header-cell *matHeaderCellDef> Type </th>
+                    <td mat-cell *matCellDef="let element"> {{element.Type}} </td>
+                  </ng-container>
+                
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+         
+      </div>
+
+    </div>
+
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-raised-button matStepperNext>Next</button>
+  </mat-card-actions>
+</mat-card>

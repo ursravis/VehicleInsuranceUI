@@ -1,15 +1,39 @@
-<div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder="Input">
-  </mat-form-field>
-
-  <mat-form-field>
-    <textarea matInput placeholder="Textarea"></textarea>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="Select">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>About You</mat-card-title>
+    <mat-card-subtitle>Customer Info</mat-card-subtitle>
+  </mat-card-header>
+ 
+  <mat-card-content>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="First Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Last Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email"  #email required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Phone Number">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Address"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="number" matInput placeholder="Zip Code">
+      </mat-form-field>
+      <!-- <mat-form-field>
+        <mat-select placeholder="Select">
+          <mat-option value="option">Option</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+    </div>
+  </mat-card-content>
+  <mat-card-actions align="end">    
+    <button mat-raised-button matStepperNext>Next</button>
+  </mat-card-actions>
+</mat-card>

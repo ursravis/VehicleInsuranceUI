@@ -1,0 +1,26 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  .example-card {
+    max-width: 800px;
+    align-self: center;
+    vertical-align: center;
+  }
+  .vehicle-card {
+    max-width: 400px;
+    align-self: center;
+    vertical-align: center;
+  }
+  
+  .example-header-image {
+    background-image: url('../../../assets/vehicle.png');
+    background-size: cover;
+  }
+  table {
+    width: 100%;
+  }

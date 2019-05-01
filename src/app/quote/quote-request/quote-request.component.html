@@ -1,0 +1,25 @@
+<h1>
+  Vehicle Quotation Request
+</h1>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Customer</ng-template>
+      <vi-customer></vi-customer>    
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Vehicles</ng-template>
+      <vi-vehicle></vi-vehicle>    
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Quote Ready</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
