@@ -6,8 +6,8 @@
   </mat-card-header>
 
   <mat-card-content>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign.xs="center center" fxLayoutWrap>
-      <div fxFlex="50" fxFlexOrder.lt-md="1">
+    <div fxLayout="row" fxLayout.lt-sm="column"  fxLayoutGap="10px"  fxLayoutWrap>
+      <div fxFlex="50%"  fxFlex.lt-sm="100%" >
         <mat-card class="vehicle-card">
             <mat-card-header>
                 <mat-card-title>New Vehicle</mat-card-title>
@@ -39,7 +39,7 @@
             </mat-card-actions>
         </mat-card>
       </div>
-      <div fxFlex="50"  fxFlexOrder.lt-md="2">
+      <div fxFlex="50%"  fxFlex.lt-sm="100%" >
      
               <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
