@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { CustomerComponent } from '../customer/customer.component';
 
 @Component({
   selector: 'vi-quote-request',
@@ -8,19 +9,10 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 })
 export class QuoteRequestComponent implements OnInit {
 
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-
-  constructor(private _formBuilder: FormBuilder) {}
+  @ViewChild('customerComponent') customerComponent: CustomerComponent;
+  constructor() {}
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
   }
 
 }

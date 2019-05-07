@@ -1,18 +1,18 @@
 <h1>
   Vehicle Quotation Request
 </h1>
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="customerComponent.myForm" >
+    
       <ng-template matStepLabel>Customer</ng-template>
-      <vi-customer></vi-customer>    
-    </form>
+      <vi-customer #customerComponent></vi-customer>    
+  
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
+  <mat-step >
+   
       <ng-template matStepLabel>Vehicles</ng-template>
       <vi-vehicle></vi-vehicle>    
-    </form>
+   
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Quote Ready</ng-template>
