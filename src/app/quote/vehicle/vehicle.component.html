@@ -8,6 +8,7 @@
   <mat-card-content>
     <div fxLayout="row" fxLayout.lt-sm="column"  fxLayoutGap="10px"  fxLayoutWrap>
       <div fxFlex="50%"  fxFlex.lt-sm="100%" >
+        <form [formGroup]="vehicleForm" (ngSubmit)="addNewVehicle()">
         <mat-card class="vehicle-card">
             <mat-card-header>
                 <mat-card-title>New Vehicle</mat-card-title>
@@ -15,33 +16,34 @@
           <mat-card-content>
             <div class="example-container">
               <mat-form-field>
-                <input matInput placeholder="Vehicle Number">
+                <input matInput placeholder="Vehicle Number" formControlName="vehicleNumber">
               </mat-form-field>
               <mat-form-field>
-                <input matInput placeholder="Model">
+                <input matInput placeholder="Model" formControlName="model">
               </mat-form-field>
 
               <mat-form-field>
-                <input type="number" matInput placeholder="Year">
+                <input type="number" matInput placeholder="Year" formControlName="year">
               </mat-form-field>
               <mat-form-field>
-                <mat-select placeholder="Vehicle Type">
-                  <mat-option value="option">SUV</mat-option>
-                  <mat-option value="option">Sedan</mat-option>
-                  <mat-option value="option">Truck</mat-option>
-                  <mat-option value="option">EV</mat-option>
+                <mat-select placeholder="Vehicle Type" formControlName="type">
+                  <mat-option value="SUV">SUV</mat-option>
+                  <mat-option value="Sedan">Sedan</mat-option>
+                  <mat-option value="Truck">Truck</mat-option>
+                  <mat-option value="EV">EV</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
           </mat-card-content>
           <mat-card-actions align="end">
-              <button mat-raised-button >Add Vehicle</button>
+              <button mat-raised-button type="submit" [disabled]="!vehicleForm.valid" >Add Vehicle</button>
             </mat-card-actions>
         </mat-card>
+        </form>
       </div>
       <div fxFlex="50%"  fxFlex.lt-sm="100%" >
      
-              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+              <table mat-table [dataSource]="customerVehicles" class="mat-elevation-z1" >
 
                   <!--- Note that these columns can be defined in any order.
                         The actual rendered columns are set as a property on the row definition" -->
@@ -49,26 +51,33 @@
                   <!-- Position Column -->
                   <ng-container matColumnDef="VehicleNumber">
                     <th mat-header-cell *matHeaderCellDef> Vehicle Number </th>
-                    <td mat-cell *matCellDef="let element"> {{element.VehicleNumber}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.vehicleNumber}} </td>
                   </ng-container>
                 
                   <!-- Name Column -->
                   <ng-container matColumnDef="Model">
                     <th mat-header-cell *matHeaderCellDef> Model </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Model}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.model}} </td>
                   </ng-container>
                 
                   <!-- Weight Column -->
                   <ng-container matColumnDef="Year">
                     <th mat-header-cell *matHeaderCellDef> Year </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Year}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.year}} </td>
                   </ng-container>
                 
                   <!-- Symbol Column -->
                   <ng-container matColumnDef="Type">
                     <th mat-header-cell *matHeaderCellDef> Type </th>
-                    <td mat-cell *matCellDef="let element"> {{element.Type}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.type}} </td>
                   </ng-container>
+                  <ng-container matColumnDef="actionsColumn">
+                    <mat-header-cell *matHeaderCellDef>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <button mat-button (click)="deleteVehicle(element)">X</button>
+                    </mat-cell>
+                </ng-container>
                 
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

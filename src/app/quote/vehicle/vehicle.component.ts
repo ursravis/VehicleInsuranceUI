@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-export interface Vehicle {
-  VehicleNumber: string;
-  Model: string;
-  Year: number;
-  Type: string;
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material';
+export class Vehicle {
+  vehicleNumber: string;
+  model: string;
+  year: number;
+  type: string;
+  public constructor(init?: Partial<Vehicle>) {
+    Object.assign(this, init);
+}
 }
 
-const ELEMENT_DATA: Vehicle[] = [
-  {VehicleNumber:'Hydrogen', Model:'Toyota', Year: 2019, Type: 'EV'},
-  {VehicleNumber:'Hydrogen', Model:'Toyota', Year: 2019, Type: 'EV'},
-  {VehicleNumber:'Hydrogen', Model:'Toyota', Year: 2019, Type: 'EV'},
-  {VehicleNumber:'Hydrogen', Model:'Toyota', Year: 2019, Type: 'EV'},
-  {VehicleNumber:'Hydrogen', Model:'Toyota', Year: 2019, Type: 'EV'},
-  {VehicleNumber:'Hydrogen', Model:'Toyota', Year: 2019, Type: 'EV'},
-];
+
 
 @Component({
   selector: 'vi-vehicle',
@@ -21,11 +19,29 @@ const ELEMENT_DATA: Vehicle[] = [
   styleUrls: ['./vehicle.component.scss']
 })
 export class VehicleComponent implements OnInit {
-  displayedColumns: string[] = ['VehicleNumber', 'Model', 'Year', 'Type'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+  customerVehicles: MatTableDataSource<Vehicle> =  new MatTableDataSource<Vehicle>();
+  displayedColumns: string[] = ['VehicleNumber', 'Model', 'Year', 'Type','actionsColumn'];
+  vehicleForm = this.fb.group({
+    vehicleNumber: ['', Validators.required],
+    model: ['', Validators.required],
+    year: ['3243', Validators.compose(
+      [Validators.minLength(4), Validators.maxLength(4)])],
+    type: ['SUV', Validators.required]
+  });
+  constructor(private fb: FormBuilder) {
+  }
 
   ngOnInit() {
   }
-
+  addNewVehicle() {
+   var newVehicle = new Vehicle(this.vehicleForm.value);
+   this.customerVehicles.data.push(newVehicle);
+   this.customerVehicles.data=this.customerVehicles.data;
+   console.log(this.customerVehicles);
+  }
+  deleteVehicle(vehicle:Vehicle)
+  {
+    this.customerVehicles.data=this.customerVehicles.data.filter(it=>it != vehicle);
+    this.customerVehicles.data=this.customerVehicles.data;
+  }
 }

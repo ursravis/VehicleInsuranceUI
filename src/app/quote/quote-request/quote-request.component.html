@@ -2,17 +2,14 @@
   Vehicle Quotation Request
 </h1>
 <mat-horizontal-stepper linear #stepper>
-  <mat-step [stepControl]="customerComponent.myForm" >
-    
-      <ng-template matStepLabel>Customer</ng-template>
-      <vi-customer #customerComponent></vi-customer>    
-  
+  <mat-step [stepControl]="customerComponent.myForm">
+    <ng-template matStepLabel>Customer</ng-template>
+    <vi-customer #customerComponent></vi-customer>
   </mat-step>
-  <mat-step >
-   
-      <ng-template matStepLabel>Vehicles</ng-template>
-      <vi-vehicle></vi-vehicle>    
-   
+  <mat-step>
+    <ng-template matStepLabel>Vehicles</ng-template>
+    <vi-vehicle></vi-vehicle>
+
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Quote Ready</ng-template>
