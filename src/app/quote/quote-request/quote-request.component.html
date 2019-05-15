@@ -1,7 +1,7 @@
 <h1>
   Vehicle Quotation Request
 </h1>
-<mat-horizontal-stepper linear #stepper>
+<mat-horizontal-stepper linear #stepper (selectionChange)="stepSelectionChange($event)">
   <mat-step [stepControl]="customerComponent.myForm">
     <ng-template matStepLabel>Customer</ng-template>
     <vi-customer #customerComponent></vi-customer>
@@ -13,7 +13,7 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Quote Ready</ng-template>
-    You are now done.
+    <quote-result #quoteResultComponent></quote-result>
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>

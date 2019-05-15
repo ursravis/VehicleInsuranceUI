@@ -1,0 +1,42 @@
+<div class="loading-indicator" [hidden]="!showLoading">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+<div [hidden]="showLoading">
+  <h3>
+    Your Quote is Ready, please select one to proceed.
+  </h3>
+  <div fxLayout="row" fxLayout.lt-sm="column"  fxLayoutGap="10px"  fxLayoutWrap>
+ 
+  <mat-card fxFlex="300px"  class="example-card" *ngFor="let quote of quotes">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{quote.name}}</mat-card-title>
+      <mat-card-subtitle>{{quote.description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="example-container">
+        <div>
+          Quote Start Date:<b> {{quote.quoteStartDate | date}} </b>
+        </div>
+        <div>
+          Quote End Date:  <b> {{quote.quoteEndDate | date}} </b>
+        </div>
+        <div>
+          Premium:         <b> {{quote.premium}}</b>
+        </div>
+        <div>
+          Coverage:         <b> {{quote.coverage}}</b>
+        </div>
+        <div>
+          Primary Contact:  <b> {{quote.customerName}} </b>
+        </div>
+
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button>Select</button>
+    </mat-card-actions>
+  </mat-card>
+ 
+  </div>
+</div>

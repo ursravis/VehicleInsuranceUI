@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
+import { QuoteService } from '../quote.service';
 export class Vehicle {
   vehicleNumber: string;
   model: string;
@@ -8,7 +9,7 @@ export class Vehicle {
   type: string;
   public constructor(init?: Partial<Vehicle>) {
     Object.assign(this, init);
-}
+  }
 }
 
 
@@ -19,8 +20,8 @@ export class Vehicle {
   styleUrls: ['./vehicle.component.scss']
 })
 export class VehicleComponent implements OnInit {
-  customerVehicles: MatTableDataSource<Vehicle> =  new MatTableDataSource<Vehicle>();
-  displayedColumns: string[] = ['VehicleNumber', 'Model', 'Year', 'Type','actionsColumn'];
+  customerVehicles: MatTableDataSource<Vehicle> = new MatTableDataSource<Vehicle>();
+  displayedColumns: string[] = ['VehicleNumber', 'Model', 'Year', 'Type', 'actionsColumn'];
   vehicleForm = this.fb.group({
     vehicleNumber: ['', Validators.required],
     model: ['', Validators.required],
@@ -28,20 +29,23 @@ export class VehicleComponent implements OnInit {
       [Validators.minLength(4), Validators.maxLength(4)])],
     type: ['SUV', Validators.required]
   });
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private quoteService:QuoteService) {
   }
 
   ngOnInit() {
   }
   addNewVehicle() {
-   var newVehicle = new Vehicle(this.vehicleForm.value);
-   this.customerVehicles.data.push(newVehicle);
-   this.customerVehicles.data=this.customerVehicles.data;
-   console.log(this.customerVehicles);
+    var newVehicle = new Vehicle(this.vehicleForm.value);
+    this.customerVehicles.data.push(newVehicle);
+    this.customerVehicles.data = this.customerVehicles.data;
+    console.log(this.customerVehicles);
   }
-  deleteVehicle(vehicle:Vehicle)
+  deleteVehicle(vehicle: Vehicle) {
+    this.customerVehicles.data = this.customerVehicles.data.filter(it => it != vehicle);
+    this.customerVehicles.data = this.customerVehicles.data;
+  }
+  saveVehicles()
   {
-    this.customerVehicles.data=this.customerVehicles.data.filter(it=>it != vehicle);
-    this.customerVehicles.data=this.customerVehicles.data;
+    this.quoteService.createVehicles(this.customerVehicles.data);
   }
 }
