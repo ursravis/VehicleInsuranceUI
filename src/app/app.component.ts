@@ -30,7 +30,7 @@ setUserName(){
   this.oktaAuth.getUser().then((user) =>{
     console.log('user');
     console.log(user);
-    this.userName=user?user.email:'';
+    this.userName=user?user.name:'';
   });
 }
   login() {

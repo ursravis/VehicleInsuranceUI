@@ -41,7 +41,8 @@ import { environment } from '../environments/environment';
     OktaAuthModule.initAuth({
       issuer: environment.openIdIssuer,
       redirectUri: environment.openIdRedirectUrl,
-      clientId: environment.openIdClient
+      clientId: environment.openIdClient,
+      scope:'openid profile'
     })
     
   ],
