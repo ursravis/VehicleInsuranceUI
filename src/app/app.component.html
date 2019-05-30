@@ -4,5 +4,10 @@
     <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
   </span>
   <button mat-button routerLink="/calculator"><mat-icon>dialpad</mat-icon></button>
+  <span>
+    <span>{{userName}}</span>
+    <button mat-button *ngIf="!isAuthenticated" (click)="login()"> Login </button>
+    <button mat-button *ngIf="isAuthenticated" (click)="logout()"> Logout </button>
+  </span>
 </mat-toolbar>
 <router-outlet></router-outlet>

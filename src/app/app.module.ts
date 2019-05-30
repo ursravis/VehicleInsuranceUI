@@ -17,7 +17,8 @@ import { MatToolbarModule,
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-
+import { OktaAuthModule } from '@okta/okta-angular';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,12 @@ import { HomeComponent } from './home/home.component';
     MatTableModule,
     MatDividerModule,
     MatStepperModule,
-    AppRoutingModule
+    AppRoutingModule,
+    OktaAuthModule.initAuth({
+      issuer: environment.openIdIssuer,
+      redirectUri: environment.openIdRedirectUrl,
+      clientId: environment.openIdClient
+    })
     
   ],
   providers: [],

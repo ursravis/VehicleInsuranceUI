@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  openIdIssuer:'https://dev-855547.okta.com/oauth2/default',
+  openIdRedirectUrl:'http://localhost:4200/implicit/callback',
+  openIdClient:'0oan04b1nWwRG1pRb356'
 };
 
 /*
