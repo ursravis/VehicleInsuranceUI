@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import{OAuthModule} from "angular-oauth2-oidc";
 
 import { MatToolbarModule,
          MatMenuModule,
@@ -19,6 +20,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { OktaAuthModule } from '@okta/okta-angular';
 import { environment } from '../environments/environment';
+import { from } from 'rxjs';
+import { AuthGuard } from './auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,15 +41,16 @@ import { environment } from '../environments/environment';
     MatDividerModule,
     MatStepperModule,
     AppRoutingModule,
-    OktaAuthModule.initAuth({
-      issuer: environment.openIdIssuer,
-      redirectUri: environment.openIdRedirectUrl,
-      clientId: environment.openIdClient,
-      scope:'openid profile'
-    })
+    OAuthModule.forRoot(),
+    // OktaAuthModule.initAuth({
+    //   issuer: environment.openIdIssuer,
+    //   redirectUri: environment.openIdRedirectUrl,
+    //   clientId: environment.openIdClient,
+    //   scope:'openid profile'
+    // })
     
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,9 +5,9 @@
   </span>
   <button mat-button routerLink="/calculator"><mat-icon>dialpad</mat-icon></button>
   <span>
-    <span>{{userName}}</span>
-    <button mat-button *ngIf="!isAuthenticated" (click)="login()"> Login </button>
-    <button mat-button *ngIf="isAuthenticated" (click)="logout()"> Logout </button>
+    <span *ngIf="givenName">{{givenName}}</span>
+    <button mat-button *ngIf="!givenName" (click)="login()"> Login </button>
+    <button mat-button *ngIf="givenName" (click)="logout()"> Logout </button>
   </span>
 </mat-toolbar>
 <router-outlet></router-outlet>
